@@ -1,0 +1,31 @@
+<svg viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="رسم توضيحي لمقارنة بين نموذجين للذكاء الاصطناعي">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0984e3"/>
+      <stop offset="1" stop-color="#00b894"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="320" rx="20" fill="url(#bg)" opacity="0.08"/>
+
+  <!-- فقاعة الحوار اليسرى -->
+  <g>
+    <rect x="60" y="70" width="220" height="130" rx="24" fill="#0984e3"/>
+    <path d="M100 200 L100 230 L140 200 Z" fill="#0984e3"/>
+    <circle cx="120" cy="135" r="10" fill="#ffffff"/>
+    <circle cx="170" cy="135" r="10" fill="#ffffff"/>
+    <circle cx="220" cy="135" r="10" fill="#ffffff"/>
+  </g>
+
+  <!-- فقاعة الحوار اليمنى -->
+  <g>
+    <rect x="360" y="70" width="220" height="130" rx="24" fill="#00b894"/>
+    <path d="M540 200 L540 230 L500 200 Z" fill="#00b894"/>
+    <circle cx="420" cy="135" r="10" fill="#ffffff"/>
+    <circle cx="470" cy="135" r="10" fill="#ffffff"/>
+    <circle cx="520" cy="135" r="10" fill="#ffffff"/>
+  </g>
+
+  <!-- رمز VS في المنتصف -->
+  <circle cx="320" cy="160" r="30" fill="#ffffff"/>
+  <text x="320" y="169" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="22" font-weight="900" fill="#2d3436">VS</text>
+</svg>

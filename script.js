@@ -76,6 +76,10 @@ document.addEventListener("DOMContentLoaded", () => {
             chartData.options.plugins = chartData.options.plugins || {};
             chartData.options.plugins.legend = chartData.options.plugins.legend || {};
             chartData.options.plugins.legend.labels = { color: textColor, font: { family: 'Tajawal' } };
+            if (chartData.options.plugins.title) {
+                chartData.options.plugins.title.color = textColor;
+                chartData.options.plugins.title.font = { family: 'Tajawal', size: 16, weight: 'bold' };
+            }
 
             if (chartData.type !== 'pie' && chartData.type !== 'doughnut') {
                 chartData.options.scales = chartData.options.scales || {};
@@ -102,6 +106,9 @@ document.addEventListener("DOMContentLoaded", () => {
             if (chart.options.plugins.legend.labels) {
                 chart.options.plugins.legend.labels.color = newTextColor;
             }
+            if (chart.options.plugins.title && chart.options.plugins.title.color) {
+                chart.options.plugins.title.color = newTextColor;
+            }
             if (chart.options.scales) {
                 if (chart.options.scales.x) { chart.options.scales.x.ticks.color = newTextColor; chart.options.scales.x.grid.color = newGridColor; }
                 if (chart.options.scales.y) { chart.options.scales.y.ticks.color = newTextColor; chart.options.scales.y.grid.color = newGridColor; }
@@ -111,10 +118,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 4. أزرار "نسخ" فوق مربعات الأكواد البرمجية (تُضاف بعد إزالة كتل المخططات أعلاه، فلا تتكرر عليها)
-    document.querySelectorAll('.post-content .highlighter-rouge').forEach(block => {
-        const codeEl = block.querySelector('pre code') || block.querySelector('code');
-        if (!codeEl) return;
-        block.style.position = 'relative';
+    // هذا الكود لا يعتمد على وجود class معيّن (مثل highlighter-rouge) بل يستهدف أي <pre>
+    // داخل المقالة مباشرة، حتى يشتغل بغض النظر عن نسخة Jekyll/Rouge المستخدمة.
+    document.querySelectorAll('.post-content pre').forEach(pre => {
+        if (pre.dataset.copyReady) return; // تجنّب التكرار
+        pre.dataset.copyReady = 'true';
+
+        const codeEl = pre.querySelector('code') || pre;
+
+        // نضمن وجود حاوية بموضع relative لا تتأثر بتمرير الكود الأفقي، حتى لو
+        // لم يكن هناك غلاف div.highlighter-rouge أصلاً حول الـ pre
+        let container = pre.parentElement;
+        if (!container || container.classList.contains('post-content')) {
+            const wrap = document.createElement('div');
+            wrap.className = 'code-wrap';
+            pre.replaceWith(wrap);
+            wrap.appendChild(pre);
+            container = wrap;
+        }
+        container.style.position = 'relative';
 
         const btn = document.createElement('button');
         btn.type = 'button';
@@ -123,19 +145,31 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.setAttribute('aria-label', 'نسخ الكود');
 
         btn.addEventListener('click', () => {
-            navigator.clipboard.writeText(codeEl.textContent).then(() => {
+            const text = codeEl.textContent;
+            const onSuccess = () => {
                 btn.textContent = 'تم النسخ ✓';
                 btn.classList.add('is-copied');
                 setTimeout(() => {
                     btn.textContent = 'نسخ';
                     btn.classList.remove('is-copied');
                 }, 1600);
-            }).catch(() => {
-                btn.textContent = 'تعذّر النسخ';
-            });
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(onSuccess).catch(() => { btn.textContent = 'تعذّر النسخ'; });
+            } else {
+                // بديل احتياطي للمتصفحات القديمة التي لا تدعم Clipboard API
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                try { document.execCommand('copy'); onSuccess(); } catch (e) { btn.textContent = 'تعذّر النسخ'; }
+                document.body.removeChild(ta);
+            }
         });
 
-        block.appendChild(btn);
+        container.appendChild(btn);
     });
 
     // 5. زر "العودة للأعلى" يظهر بعد التمرير لمسافة معيّنة
