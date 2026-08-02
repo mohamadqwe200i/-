@@ -3,6 +3,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
 
+    // مساعدات مشتركة للمفضلة (تُستخدم من الصفحة الرئيسية وصفحة المقال نفسها)
+    function getFavorites() {
+        try { return JSON.parse(localStorage.getItem('favoriteArticles') || '[]'); }
+        catch (e) { return []; }
+    }
+    function isFavorited(url) { return getFavorites().indexOf(url) !== -1; }
+    function toggleFavorite(url) {
+        let favs = getFavorites();
+        if (favs.indexOf(url) !== -1) favs = favs.filter(u => u !== url);
+        else favs.push(url);
+        localStorage.setItem('favoriteArticles', JSON.stringify(favs));
+        return favs.indexOf(url) !== -1;
+    }
+
     // تحقّق دفاعي: لو الزر غير موجود لأي سبب، نتجنب توقف باقي السكربت بالكامل
     if (themeToggle) {
         // التحقق من الوضع المحفوظ للمستخدم
@@ -180,6 +194,97 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         backToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // 6. البحث والتصفية حسب التصنيف + المفضلة (الصفحة الرئيسية فقط)
+    const grid = document.getElementById('articles-grid');
+    if (grid) {
+        const cards = Array.from(grid.querySelectorAll('.article-card'));
+        const searchInput = document.getElementById('article-search');
+        const pillsContainer = document.getElementById('category-pills');
+        const favToggle = document.getElementById('favorites-toggle');
+        const noResultsMsg = document.getElementById('no-results-msg');
+        let activeCategory = 'all';
+        let showFavoritesOnly = false;
+
+        function applyFilters() {
+            const query = (searchInput ? searchInput.value.trim().toLowerCase() : '');
+            let visibleCount = 0;
+            cards.forEach(card => {
+                const title = (card.dataset.title || '').toLowerCase();
+                const category = card.dataset.category || '';
+                const url = card.dataset.url;
+                const matchesSearch = !query || title.indexOf(query) !== -1;
+                const matchesCategory = activeCategory === 'all' || category === activeCategory;
+                const matchesFavorite = !showFavoritesOnly || isFavorited(url);
+                const visible = matchesSearch && matchesCategory && matchesFavorite;
+                card.style.display = visible ? '' : 'none';
+                if (visible) visibleCount++;
+            });
+            if (noResultsMsg) noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        // تهيئة أزرار المفضلة على كل بطاقة
+        grid.querySelectorAll('.favorite-btn').forEach(btn => {
+            const url = btn.dataset.url;
+            if (isFavorited(url)) {
+                btn.classList.add('is-favorited');
+                btn.textContent = '★';
+                btn.setAttribute('aria-pressed', 'true');
+            }
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const nowFav = toggleFavorite(url);
+                btn.classList.toggle('is-favorited', nowFav);
+                btn.textContent = nowFav ? '★' : '☆';
+                btn.setAttribute('aria-pressed', String(nowFav));
+                if (showFavoritesOnly) applyFilters();
+            });
+        });
+
+        if (searchInput) searchInput.addEventListener('input', applyFilters);
+
+        if (pillsContainer) {
+            pillsContainer.querySelectorAll('.pill').forEach(pill => {
+                pill.addEventListener('click', () => {
+                    pillsContainer.querySelectorAll('.pill').forEach(p => p.classList.remove('is-active'));
+                    pill.classList.add('is-active');
+                    activeCategory = pill.dataset.category;
+                    applyFilters();
+                });
+            });
+        }
+
+        if (favToggle) {
+            favToggle.addEventListener('click', () => {
+                showFavoritesOnly = !showFavoritesOnly;
+                favToggle.classList.toggle('is-active', showFavoritesOnly);
+                const icon = favToggle.querySelector('.star-icon');
+                if (icon) icon.textContent = showFavoritesOnly ? '★' : '☆';
+                applyFilters();
+            });
+        }
+
+        applyFilters();
+    }
+
+    // 7. زر "أضف للمفضلة" داخل صفحة المقال نفسها (وليس فقط من بطاقته بالرئيسية)
+    const favPostBtn = document.getElementById('favorite-post-btn');
+    if (favPostBtn) {
+        const url = favPostBtn.dataset.url;
+        const starEl = favPostBtn.querySelector('.star');
+        const labelEl = favPostBtn.querySelector('.label');
+        function renderFavState(fav) {
+            favPostBtn.classList.toggle('is-favorited', fav);
+            favPostBtn.setAttribute('aria-pressed', String(fav));
+            if (starEl) starEl.textContent = fav ? '★' : '☆';
+            if (labelEl) labelEl.textContent = fav ? 'في المفضلة' : 'أضف للمفضلة';
+        }
+        renderFavState(isFavorited(url));
+        favPostBtn.addEventListener('click', () => {
+            renderFavState(toggleFavorite(url));
         });
     }
 });

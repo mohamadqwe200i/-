@@ -44,6 +44,12 @@
 
     <button id="back-to-top" aria-label="العودة للأعلى">↑</button>
 
+    {% if page.date %}
+    <button id="favorite-post-btn" class="favorite-post-btn" data-url="{{ page.url | relative_url }}" aria-pressed="false">
+        <span class="star">☆</span> <span class="label">أضف للمفضلة</span>
+    </button>
+    {% endif %}
+
     <!-- استدعاء ملف الجافاسكريبت بالطريقة الصحيحة لـ Jekyll -->
     <script src="{{ '/script.js' | relative_url }}"></script>
 </body>
