@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // حارس أمان: يمنع تنفيذ كل هذا الكود أكثر من مرة على نفس الصفحة لأي سبب
+    if (document.documentElement.dataset.siteJsInit) return;
+    document.documentElement.dataset.siteJsInit = 'true';
+
     // 1. الوضع الليلي والنهاري (Dark/Light Mode)
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
