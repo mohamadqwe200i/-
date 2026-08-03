@@ -34,6 +34,40 @@
     <!-- محتوى الصفحة أو المقال سيتم عرضه هنا تلقائياً -->
     <main class="container">
         {{ content }}
+
+        {% if page.date %}
+        <!-- إعلان داخل صفحة المقال (اختياري) — نفس تعليمات إعلان الرئيسية -->
+        <div class="ad-slot ad-inline">
+            <span class="ad-label">إعلان</span>
+            <a href="#" target="_blank" rel="noopener sponsored">
+                <img src="{{ '/assets/images/ad-placeholder.svg' | relative_url }}" alt="مساحة إعلانية">
+            </a>
+        </div>
+
+        <div class="related-posts">
+            <h2>مقالات ذات صلة</h2>
+            <div class="related-posts-grid">
+                {% assign shown = 0 %}
+                {% for p in site.posts %}
+                    {% if p.url != page.url %}
+                        {% assign shared = p.categories | intersect: page.categories %}
+                        {% if shared.size > 0 and shown < 3 %}
+                        <a class="related-post-card" href="{{ p.url | relative_url }}"><h4>{{ p.title }}</h4></a>
+                        {% assign shown = shown | plus: 1 %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                {% if shown == 0 %}
+                    {% for p in site.posts limit: 4 %}
+                        {% if p.url != page.url and shown < 3 %}
+                        <a class="related-post-card" href="{{ p.url | relative_url }}"><h4>{{ p.title }}</h4></a>
+                        {% assign shown = shown | plus: 1 %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
     </main>
 
     <footer class="site-footer">

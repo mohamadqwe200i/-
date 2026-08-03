@@ -1,11 +1,23 @@
 ---
 layout: default
 title: عالم التقنية | الرئيسية
+description: "شروحات مبسطة، مقالات برمجية متخصصة، ومقارنات ذكية بين أدوات الذكاء الاصطناعي في مكان واحد."
 ---
 
 <div class="hero-section">
     <h1>أهلاً بك في عالم التقنية</h1>
     <p>شروحات مبسطة، مقالات برمجية متخصصة، ومقارنات ذكية في مكان واحد.</p>
+</div>
+
+<!-- ================= مكان الإعلان (اختياري) =================
+     غيّر رابط الصورة والوجهة بالأسفل بإعلانك الفعلي، أو احذف هذا الـ div بالكامل
+     إذا ما تبي إعلان بالرئيسية. راجع تعليمات الإعلانات كاملة أسفل ملف style.css
+     وبردّي بالمحادثة. -->
+<div class="ad-slot">
+    <span class="ad-label">إعلان</span>
+    <a href="#" target="_blank" rel="noopener sponsored">
+        <img src="{{ '/assets/images/ad-placeholder.svg' | relative_url }}" alt="مساحة إعلانية">
+    </a>
 </div>
 
 <div class="list-toolbar">
@@ -20,11 +32,8 @@ title: عالم التقنية | الرئيسية
 
 <div class="category-pills" id="category-pills">
     <button class="pill is-active" data-category="all">الكل</button>
-    {% assign all_categories = site.posts | map: 'category' | uniq %}
-    {% for cat in all_categories %}
-        {% if cat %}
-        <button class="pill" data-category="{{ cat }}">{{ cat }}</button>
-        {% endif %}
+    {% for category in site.categories %}
+    <button class="pill" data-category="{{ category[0] }}">{{ category[0] }}</button>
     {% endfor %}
 </div>
 
@@ -36,10 +45,16 @@ title: عالم التقنية | الرئيسية
     {% assign word_count = post.content | strip_html | number_of_words %}
     {% assign read_minutes = word_count | divided_by: 200 %}
     {% if read_minutes == 0 %}{% assign read_minutes = 1 %}{% endif %}
-    <div class="article-card" data-category="{{ post.category | default: 'عام' }}" data-title="{{ post.title }}" data-url="{{ post.url | relative_url }}">
+    <div class="article-card" data-categories="{{ post.categories | join: ',' }}" data-title="{{ post.title }}" data-url="{{ post.url | relative_url }}">
         <button class="favorite-btn" data-url="{{ post.url | relative_url }}" aria-label="إضافة للمفضلة" aria-pressed="false">☆</button>
         <a href="{{ post.url | relative_url }}" class="article-card-link">
-            <span class="article-category">{{ post.category | default: 'عام' }}</span>
+            <div class="article-categories">
+                {% if post.categories.size > 0 %}
+                    {% for cat in post.categories %}<span class="article-category">{{ cat }}</span>{% endfor %}
+                {% else %}
+                    <span class="article-category">عام</span>
+                {% endif %}
+            </div>
             <h3 class="article-title">{{ post.title }}</h3>
             <p class="article-excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
             <span class="article-meta">⏱ {{ read_minutes }} دقيقة قراءة</span>

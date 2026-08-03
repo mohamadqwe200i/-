@@ -104,6 +104,103 @@ a { text-decoration: none; color: var(--primary-color); }
 .site-footer { border-top: 1px solid var(--border-color); margin-top: 50px; padding: 26px 0; text-align: center; color: var(--text-secondary); font-size: 0.9rem; }
 
 /* ==========================================================================
+   مساحة الإعلان — صغيرة، ثابتة، مُعلَّم عليها بوضوح، وبدون أي تأثير يقطع على القارئ
+   ========================================================================== */
+.ad-slot {
+    position: relative;
+    max-width: 480px;
+    margin: 0 auto 34px;
+    text-align: center;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 10px;
+}
+.ad-slot .ad-label {
+    position: absolute;
+    top: -9px;
+    inset-inline-start: 14px;
+    background: var(--bg-color);
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    padding: 1px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+.ad-slot img { max-width: 100%; max-height: 100px; border-radius: 6px; display: block; margin: 0 auto; }
+.ad-slot.ad-inline { max-width: 100%; margin: 34px 0; }
+
+/* ==========================================================================
+   صندوق "الزبدة" — لإبراز الجملة أو الفكرة الأهم داخل المقال
+   ========================================================================== */
+.post-content .key-point {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--primary-color) 10%, transparent), color-mix(in srgb, var(--accent-color) 8%, transparent));
+    border: 1px solid var(--primary-color);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin: 26px 0;
+    font-size: 1.08rem;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+.post-content .key-point::before {
+    content: "🔑";
+    font-size: 1.3rem;
+    flex: none;
+    line-height: 1;
+}
+.post-content .key-point p { margin-bottom: 0; font-weight: bold; }
+
+/* ==========================================================================
+   جدول محتويات المقال (يُبنى تلقائياً من العناوين)
+   ========================================================================== */
+.post-toc {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    margin-bottom: 30px;
+}
+.post-toc h4 { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.03em; }
+.post-toc ol { margin: 0; padding-inline-start: 20px; font-size: 0.95rem; }
+.post-toc li { margin-bottom: 6px; }
+.post-toc a { color: var(--text-primary); text-decoration: none; }
+.post-toc a:hover { color: var(--primary-color); text-decoration: underline; }
+
+/* ==========================================================================
+   مقالات ذات صلة
+   ========================================================================== */
+.related-posts { margin: 50px 0; }
+.related-posts h2 { font-size: 1.5rem; margin-bottom: 18px; }
+.related-posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+.related-post-card {
+    display: block; background: var(--surface-color); border: 1px solid var(--border-color);
+    border-radius: var(--radius); padding: 18px; transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.related-post-card:hover { transform: translateY(-4px); border-color: var(--primary-color); }
+.related-post-card h4 { font-size: 1.02rem; color: var(--text-primary); margin: 0; line-height: 1.5; }
+
+/* ==========================================================================
+   عنصر تفاعلي: مقارنة "أمر ضعيف مقابل أمر قوي" (يُستخدم داخل مقالات معيّنة)
+   ========================================================================== */
+.prompt-demo { margin: 30px 0; border: 1px solid var(--border-color); border-radius: var(--radius); overflow: hidden; }
+.prompt-demo-tabs { display: flex; }
+.prompt-tab {
+    flex: 1; padding: 14px; border: none; cursor: pointer;
+    background: var(--bg-color); color: var(--text-secondary); font-family: 'Tajawal', sans-serif; font-weight: bold; font-size: 0.95rem;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+.prompt-tab.is-active { background: var(--surface-color); color: var(--primary-color); }
+.prompt-demo-box { padding: 22px; background: var(--surface-color); }
+.prompt-text { font-size: 1.08rem; font-style: italic; background: var(--bg-color); padding: 14px 16px; border-radius: 8px; margin-bottom: 12px; }
+.prompt-verdict { font-weight: bold; font-size: 0.95rem; }
+.prompt-verdict.bad { color: #e17055; }
+.prompt-verdict.good { color: var(--accent-color); }
+
+/* ==========================================================================
    شريط الأدوات (بحث + مفضلة) وتصفية التصنيفات
    ========================================================================== */
 .list-toolbar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 34px 0 16px; }
@@ -154,6 +251,9 @@ a { text-decoration: none; color: var(--primary-color); }
 .article-card:hover { transform: translateY(-6px); border-color: var(--primary-color); box-shadow: var(--shadow-md); }
 .article-card-link { display: block; padding: 26px; color: inherit; }
 .article-category { background: var(--primary-color); color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.82rem; font-weight: bold; }
+.article-categories { display: flex; flex-wrap: wrap; gap: 6px; }
+.article-categories .article-category:nth-child(2) { background: var(--accent-color); }
+.article-categories .article-category:nth-child(3) { background: var(--text-secondary); }
 .article-title { margin: 16px 0 10px; font-size: 1.3rem; color: var(--text-primary); line-height: 1.5; }
 .article-excerpt { color: var(--text-secondary); font-size: 0.95rem; }
 .article-meta { display: block; margin-top: 14px; color: var(--text-secondary); font-size: 0.82rem; }
@@ -341,6 +441,8 @@ a { text-decoration: none; color: var(--primary-color); }
     .container { padding: 0 16px; }
     .nav-content { gap: 10px; }
     .logo { font-size: 1.3rem; }
+    .ad-slot { max-width: 100%; }
+    .ad-slot img { max-height: 80px; }
     .hero-section { margin: 26px 0; padding: 32px 18px; }
     .hero-section h1 { font-size: 1.8rem; }
     .hero-section p { font-size: 1rem; }

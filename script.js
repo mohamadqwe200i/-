@@ -140,6 +140,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // داخل المقالة مباشرة، حتى يشتغل بغض النظر عن نسخة Jekyll/Rouge المستخدمة.
     document.querySelectorAll('.post-content pre').forEach(pre => {
         if (pre.dataset.copyReady) return; // تجنّب التكرار
+        // حماية إضافية: لا تضف زر نسخ إطلاقاً لأي كتلة مخطط بياني (حتى لو لم تُحوَّل لأي سبب)
+        if (pre.closest('.language-chart') || pre.closest('.chart-wrapper')) return;
         pre.dataset.copyReady = 'true';
 
         const codeEl = pre.querySelector('code') || pre;
@@ -217,10 +219,10 @@ document.addEventListener("DOMContentLoaded", () => {
             let visibleCount = 0;
             cards.forEach(card => {
                 const title = (card.dataset.title || '').toLowerCase();
-                const category = card.dataset.category || '';
+                const categories = (card.dataset.categories || '').split(',').map(c => c.trim()).filter(Boolean);
                 const url = card.dataset.url;
                 const matchesSearch = !query || title.indexOf(query) !== -1;
-                const matchesCategory = activeCategory === 'all' || category === activeCategory;
+                const matchesCategory = activeCategory === 'all' || categories.indexOf(activeCategory) !== -1;
                 const matchesFavorite = !showFavoritesOnly || isFavorited(url);
                 const visible = matchesSearch && matchesCategory && matchesFavorite;
                 card.style.display = visible ? '' : 'none';
@@ -290,5 +292,35 @@ document.addEventListener("DOMContentLoaded", () => {
         favPostBtn.addEventListener('click', () => {
             renderFavState(toggleFavorite(url));
         });
+    }
+
+    // 8. جدول محتويات تلقائي — يُبنى من عناوين H2 داخل أي مقال طويل (3 عناوين فأكثر)
+    const postContent = document.querySelector('.post-content');
+    if (postContent) {
+        const headings = postContent.querySelectorAll('h2');
+        if (headings.length >= 3) {
+            const tocBox = document.createElement('div');
+            tocBox.className = 'post-toc';
+            const tocTitle = document.createElement('h4');
+            tocTitle.textContent = 'محتويات المقال';
+            const tocList = document.createElement('ol');
+            headings.forEach((h, i) => {
+                if (!h.id) h.id = 'section-' + (i + 1);
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = '#' + h.id;
+                a.textContent = h.textContent;
+                li.appendChild(a);
+                tocList.appendChild(li);
+            });
+            tocBox.appendChild(tocTitle);
+            tocBox.appendChild(tocList);
+            const h1 = postContent.querySelector('h1');
+            if (h1 && h1.parentNode) {
+                h1.parentNode.insertBefore(tocBox, h1.nextSibling);
+            } else {
+                postContent.insertBefore(tocBox, postContent.firstChild);
+            }
+        }
     }
 });
