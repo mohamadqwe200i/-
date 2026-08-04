@@ -116,7 +116,7 @@ a { text-decoration: none; color: var(--primary-color); }
 /* ==========================================================================
    مساحة الإعلان — صغيرة، ثابتة، مُعلَّم عليها بوضوح، وبدون أي تأثير يقطع على القارئ
    ========================================================================== */
-.ad-slot {
+.sponsor-block {
     position: relative;
     max-width: 480px;
     margin: 0 auto 34px;
@@ -126,7 +126,7 @@ a { text-decoration: none; color: var(--primary-color); }
     border-radius: var(--radius);
     padding: 10px;
 }
-.ad-slot .ad-label {
+.sponsor-block .sponsor-label {
     position: absolute;
     top: -9px;
     inset-inline-start: 14px;
@@ -137,8 +137,8 @@ a { text-decoration: none; color: var(--primary-color); }
     border-radius: 4px;
     border: 1px solid var(--border-color);
 }
-.ad-slot img { max-width: 100%; max-height: 100px; border-radius: 6px; display: block; margin: 0 auto; }
-.ad-slot.ad-inline { max-width: 100%; margin: 34px 0; }
+.sponsor-block img { max-width: 100%; max-height: 100px; border-radius: 6px; display: block; margin: 0 auto; }
+.sponsor-block.sponsor-block-inline { max-width: 100%; margin: 34px 0; }
 
 /* ==========================================================================
    صندوق "الزبدة" — لإبراز الجملة أو الفكرة الأهم داخل المقال
@@ -451,8 +451,8 @@ a { text-decoration: none; color: var(--primary-color); }
     .container { padding: 0 16px; }
     .nav-content { gap: 10px; }
     .logo { font-size: 1.3rem; }
-    .ad-slot { max-width: 100%; }
-    .ad-slot img { max-height: 80px; }
+    .sponsor-block { max-width: 100%; }
+    .sponsor-block img { max-height: 80px; }
     .hero-section { margin: 26px 0; padding: 32px 18px; }
     .hero-section h1 { font-size: 1.8rem; }
     .hero-section p { font-size: 1rem; }
@@ -468,6 +468,18 @@ a { text-decoration: none; color: var(--primary-color); }
     #back-to-top { width: 40px; height: 40px; bottom: 16px; inset-inline-end: 16px; }
     .favorite-post-btn { bottom: 16px; inset-inline-start: 16px; padding: 10px 14px; }
     .favorite-post-btn .label { display: none; }
+    .list-toolbar { flex-direction: column; align-items: stretch; }
+    .search-box, .favorites-toggle { width: 100%; }
+    .favorites-toggle { justify-content: center; }
+    .category-pills { gap: 7px; }
+    .pill { padding: 7px 14px; font-size: 0.82rem; }
+    .post-content .key-point { font-size: 0.98rem; padding: 14px 16px; gap: 10px; }
+    .prompt-demo-box { padding: 16px; }
+    .prompt-text { font-size: 0.98rem; }
+    .related-posts-grid { grid-template-columns: 1fr; }
+    .post-toc { padding: 14px 16px; }
+    .sponsor-block { padding: 8px; }
+    .article-card-link { padding: 20px; }
 }
 
 @media (max-width: 480px) {

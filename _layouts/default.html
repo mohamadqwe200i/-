@@ -11,7 +11,7 @@
     <!-- استدعاء مكتبة المخططات البيانية -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- استدعاء ملف التصميم بالطريقة الصحيحة لـ Jekyll -->
-    <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
     <!-- وسوم SEO/OpenGraph تلقائية (تحتاج جوهرة jekyll-seo-tag المفعّلة في _config.yml) -->
     {% seo %}
     <!-- رابط فييد RSS تلقائي (تحتاج جوهرة jekyll-feed) -->
@@ -38,8 +38,8 @@
 
         {% if page.date %}
         <!-- إعلان داخل صفحة المقال (اختياري) — نفس تعليمات إعلان الرئيسية -->
-        <div class="ad-slot ad-inline">
-            <span class="ad-label">إعلان</span>
+        <div class="sponsor-block sponsor-block-inline">
+            <span class="sponsor-label">إعلان</span>
             <a href="https://www.effectivecpmnetwork.com/vbsnj3zgs4?key=95b6f55b4feb40386f3f0e04da603499" target="_blank" rel="noopener sponsored">
                 <img src="{{ '/assets/images/ad-placeholder.svg' | relative_url }}" alt="مساحة إعلانية">
             </a>
@@ -86,6 +86,6 @@
     {% endif %}
 
     <!-- استدعاء ملف الجافاسكريبت بالطريقة الصحيحة لـ Jekyll -->
-    <script src="{{ '/script.js' | relative_url }}"></script>
+    <script src="{{ '/script.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
 </body>
 </html>
