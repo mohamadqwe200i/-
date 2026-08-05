@@ -11,6 +11,11 @@ url: "https://username.github.io"
 # jekyll-seo-tag: وسوم SEO/OpenGraph جاهزة لكل صفحة
 # jekyll-sitemap: يولّد sitemap.xml تلقائياً لمحركات البحث
 # jekyll-feed: يولّد فييد RSS لمقالاتك (/feed.xml)
+# مهم جداً: بدون هذا السطر، Jekyll يخفي تلقائياً أي مقال تاريخه "يبدو مستقبلياً"
+# بالنسبة لوقت بناء الموقع الفعلي على خوادم GitHub (خصوصاً بفارق التوقيت UTC).
+# هذا هو السبب الشائع جداً وراء "المقال ما يظهر" رغم إنه مرفوع صح تماماً.
+future: true
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag

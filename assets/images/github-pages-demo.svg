@@ -1,0 +1,20 @@
+<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="رسم يوضح رفع ملفات من الجهاز إلى GitHub ثم نشرها كموقع مباشر">
+  <rect width="640" height="220" rx="20" fill="#0984e3" opacity="0.06"/>
+  <!-- جهاز -->
+  <rect x="40" y="70" width="140" height="90" rx="10" fill="#636e72"/>
+  <rect x="52" y="82" width="116" height="66" rx="4" fill="#dfe6e9"/>
+  <text x="110" y="120" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="13" fill="#2d3436">ملفاتك</text>
+  <path d="M185 110 L280 110" stroke="#00b894" stroke-width="4" marker-end="url(#a2)"/>
+  <defs><marker id="a2" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#00b894"/></marker></defs>
+  <!-- GitHub -->
+  <circle cx="330" cy="110" r="50" fill="#2d3436"/>
+  <text x="330" y="118" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="14" fill="#fff">GitHub</text>
+  <path d="M385 110 L480 110" stroke="#00b894" stroke-width="4" marker-end="url(#a3)"/>
+  <defs><marker id="a3" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#00b894"/></marker></defs>
+  <!-- موقع مباشر -->
+  <rect x="485" y="65" width="115" height="90" rx="10" fill="#00b894"/>
+  <circle cx="505" cy="82" r="4" fill="#fff"/>
+  <circle cx="517" cy="82" r="4" fill="#fff"/>
+  <circle cx="529" cy="82" r="4" fill="#fff"/>
+  <text x="542" y="115" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="13" fill="#fff">موقعك مباشر</text>
+</svg>
