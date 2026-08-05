@@ -118,13 +118,14 @@ a { text-decoration: none; color: var(--primary-color); }
    ========================================================================== */
 .sponsor-block {
     position: relative;
-    max-width: 480px;
+    width: 320px;
+    max-width: 100%;
     margin: 0 auto 34px;
     text-align: center;
     background: var(--surface-color);
     border: 1px solid var(--border-color);
     border-radius: var(--radius);
-    padding: 10px;
+    padding: 16px 10px 10px;
 }
 .sponsor-block .sponsor-label {
     position: absolute;
@@ -137,8 +138,8 @@ a { text-decoration: none; color: var(--primary-color); }
     border-radius: 4px;
     border: 1px solid var(--border-color);
 }
-.sponsor-block img { max-width: 100%; max-height: 100px; border-radius: 6px; display: block; margin: 0 auto; }
-.sponsor-block.sponsor-block-inline { max-width: 100%; margin: 34px 0; }
+.sponsor-ad-container { display: flex; align-items: center; justify-content: center; min-height: 250px; overflow: hidden; }
+.sponsor-block.sponsor-block-inline { width: 320px; margin: 34px auto; }
 
 /* ==========================================================================
    صندوق "الزبدة" — لإبراز الجملة أو الفكرة الأهم داخل المقال
@@ -452,7 +453,6 @@ a { text-decoration: none; color: var(--primary-color); }
     .nav-content { gap: 10px; }
     .logo { font-size: 1.3rem; }
     .sponsor-block { max-width: 100%; }
-    .sponsor-block img { max-height: 80px; }
     .hero-section { margin: 26px 0; padding: 32px 18px; }
     .hero-section h1 { font-size: 1.8rem; }
     .hero-section p { font-size: 1rem; }
