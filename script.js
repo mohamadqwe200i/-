@@ -294,7 +294,30 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 8. جدول محتويات تلقائي — يُبنى من عناوين H2 داخل أي مقال طويل (3 عناوين فأكثر)
+    // 8. زر "نسخ الرابط" بشريط مشاركة المقال
+    const shareCopyBtn = document.querySelector('.share-copy');
+    if (shareCopyBtn) {
+        shareCopyBtn.addEventListener('click', () => {
+            const url = shareCopyBtn.dataset.url;
+            const onDone = () => {
+                const original = 'نسخ الرابط';
+                shareCopyBtn.textContent = 'تم النسخ ✓';
+                shareCopyBtn.classList.add('is-copied');
+                setTimeout(() => { shareCopyBtn.textContent = original; shareCopyBtn.classList.remove('is-copied'); }, 1600);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(url).then(onDone).catch(() => {});
+            } else {
+                const ta = document.createElement('textarea');
+                ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
+                document.body.appendChild(ta); ta.select();
+                try { document.execCommand('copy'); onDone(); } catch (e) {}
+                document.body.removeChild(ta);
+            }
+        });
+    }
+
+    // 9. جدول محتويات تلقائي — يُبنى من عناوين H2 داخل أي مقال طويل (3 عناوين فأكثر)
     const postContent = document.querySelector('.post-content');
     if (postContent) {
         const headings = postContent.querySelectorAll('h2');
