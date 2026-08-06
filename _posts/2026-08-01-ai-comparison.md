@@ -70,7 +70,7 @@ console.log(message);
 
 <figure markdown="1">
 
-![رسم توضيحي لمقارنة بين نموذجين للذكاء الاصطناعي]({{ '/assets/images/ai-comparison-demo.svg' | relative_url }})
+![رسم توضيحي لمقارنة بين نموذجين للذكاء الاصطناعي]({{ '/assets/images/theme-ai.svg' | relative_url }})
 
 <figcaption>مثال: رسم توضيحي بسيط يقارن بين نموذجين — الصورة موجودة في <code>/assets/images/</code></figcaption>
 </figure>

@@ -346,7 +346,8 @@ a { text-decoration: none; color: var(--primary-color); }
 }
 
 /* صور وصور مع تعليق (figure/figcaption) */
-.post-content img { max-width: 100%; border-radius: var(--radius); margin: 20px 0; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); display: block; }
+.post-content img { max-width: 100%; border-radius: var(--radius); margin: 20px 0; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); display: block; transition: box-shadow 0.25s ease, transform 0.25s ease; }
+.post-content img:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
 .post-content figure { margin: 28px 0; text-align: center; }
 .post-content figure img { margin: 0 0 12px; }
 .post-content figcaption { color: var(--text-secondary); font-size: 0.92rem; }

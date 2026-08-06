@@ -1,0 +1,36 @@
+<svg viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="رسم تجريدي يمثل الأمان والحماية">
+  <defs>
+    <linearGradient id="secBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0984e3"/>
+      <stop offset="1" stop-color="#e17055"/>
+    </linearGradient>
+    <linearGradient id="secShield" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#74b9ff"/>
+      <stop offset="1" stop-color="#0984e3"/>
+    </linearGradient>
+    <radialGradient id="secGlow" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0" stop-color="#0984e3" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#0984e3" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="secShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0984e3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect width="640" height="280" rx="24" fill="url(#secBg)" opacity="0.06"/>
+  <circle cx="320" cy="150" r="120" fill="url(#secGlow)"/>
+
+  <!-- خطوط دائرية زخرفية -->
+  <circle cx="320" cy="150" r="95" fill="none" stroke="#0984e3" stroke-width="1.5" stroke-dasharray="3 8" opacity="0.4"/>
+
+  <g filter="url(#secShadow)">
+    <path d="M320 55 L410 88 L410 155 C410 205 370 233 320 250 C270 233 230 205 230 155 L230 88 Z" fill="url(#secShield)"/>
+  </g>
+  <path d="M290 152 L312 174 L353 128" stroke="#ffffff" stroke-width="11" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- زخارف عائمة -->
+  <circle cx="140" cy="80" r="6" fill="#00b894" opacity="0.7"/>
+  <circle cx="510" cy="200" r="8" fill="#00b894" opacity="0.7"/>
+  <circle cx="500" cy="65" r="5" fill="#fdcb6e" opacity="0.8"/>
+  <circle cx="130" cy="210" r="5" fill="#fdcb6e" opacity="0.7"/>
+  <circle cx="560" cy="140" r="4" fill="#0984e3" opacity="0.5"/>
+</svg>

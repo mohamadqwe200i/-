@@ -1,0 +1,46 @@
+<svg viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="رسم تجريدي يمثل الحوسبة السحابية">
+  <defs>
+    <linearGradient id="cloudBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#74b9ff"/>
+      <stop offset="1" stop-color="#00b894"/>
+    </linearGradient>
+    <linearGradient id="cloudFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#74b9ff"/>
+      <stop offset="1" stop-color="#0984e3"/>
+    </linearGradient>
+    <radialGradient id="cloudGlow" cx="0.5" cy="0.4" r="0.6">
+      <stop offset="0" stop-color="#74b9ff" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#74b9ff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="cloudShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0984e3" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <rect width="640" height="280" rx="24" fill="url(#cloudBg)" opacity="0.06"/>
+  <circle cx="320" cy="130" r="120" fill="url(#cloudGlow)"/>
+
+  <!-- زخارف عائمة -->
+  <circle cx="110" cy="75" r="5" fill="#fdcb6e" opacity="0.8"/>
+  <circle cx="545" cy="70" r="6" fill="#e17055" opacity="0.7"/>
+  <circle cx="560" cy="230" r="4" fill="#0984e3" opacity="0.6"/>
+
+  <g filter="url(#cloudShadow)">
+    <path d="M235 175 a48 48 0 0 1 -6 -95 a58 58 0 0 1 112 -14 a42 42 0 0 1 12 82 a37 37 0 0 1 -6 27 Z" fill="url(#cloudFill)"/>
+  </g>
+
+  <circle cx="235" cy="175" r="6" fill="#00b894"/>
+  <circle cx="345" cy="195" r="6" fill="#00b894"/>
+  <circle cx="415" cy="155" r="6" fill="#00b894"/>
+  <line x1="235" y1="175" x2="235" y2="215" stroke="#00b894" stroke-width="3" stroke-dasharray="4 4"/>
+  <line x1="345" y1="195" x2="345" y2="230" stroke="#00b894" stroke-width="3" stroke-dasharray="4 4"/>
+  <line x1="415" y1="155" x2="415" y2="215" stroke="#00b894" stroke-width="3" stroke-dasharray="4 4"/>
+
+  <g filter="url(#cloudShadow)">
+    <rect x="212" y="215" width="46" height="28" rx="6" fill="#ffffff"/>
+    <rect x="322" y="230" width="46" height="28" rx="6" fill="#ffffff"/>
+    <rect x="392" y="215" width="46" height="28" rx="6" fill="#ffffff"/>
+  </g>
+  <rect x="212" y="215" width="46" height="28" rx="6" fill="none" stroke="#0984e3" stroke-width="2"/>
+  <rect x="322" y="230" width="46" height="28" rx="6" fill="none" stroke="#0984e3" stroke-width="2"/>
+  <rect x="392" y="215" width="46" height="28" rx="6" fill="none" stroke="#0984e3" stroke-width="2"/>
+</svg>

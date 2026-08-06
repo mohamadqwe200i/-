@@ -1,0 +1,40 @@
+<svg viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="رسم تجريدي يمثل التعليم والتعلم">
+  <defs>
+    <linearGradient id="eduBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#00b894"/>
+      <stop offset="1" stop-color="#0984e3"/>
+    </linearGradient>
+    <linearGradient id="eduCap" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0984e3"/>
+      <stop offset="1" stop-color="#74b9ff"/>
+    </linearGradient>
+    <radialGradient id="eduGlow" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0" stop-color="#00b894" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#00b894" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="eduShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#0984e3" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <rect width="640" height="280" rx="24" fill="url(#eduBg)" opacity="0.06"/>
+  <circle cx="320" cy="140" r="120" fill="url(#eduGlow)"/>
+
+  <!-- زخارف عائمة -->
+  <circle cx="130" cy="80" r="5" fill="#fdcb6e" opacity="0.8"/>
+  <circle cx="520" cy="90" r="6" fill="#e17055" opacity="0.7"/>
+  <circle cx="500" cy="215" r="5" fill="#00b894" opacity="0.6"/>
+  <circle cx="150" cy="210" r="4" fill="#0984e3" opacity="0.6"/>
+
+  <g filter="url(#eduShadow)">
+    <path d="M320 85 L440 130 L320 175 L200 130 Z" fill="url(#eduCap)"/>
+  </g>
+  <path d="M255 150 L255 195 C255 213 385 213 385 195 L385 150" stroke="#0984e3" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <line x1="440" y1="130" x2="440" y2="185" stroke="#00b894" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="440" cy="192" r="7" fill="#00b894"/>
+
+  <g filter="url(#eduShadow)">
+    <rect x="150" y="195" width="60" height="44" rx="8" fill="#ffffff"/>
+  </g>
+  <line x1="162" y1="210" x2="198" y2="210" stroke="#0984e3" stroke-width="3" stroke-linecap="round"/>
+  <line x1="162" y1="222" x2="188" y2="222" stroke="#0984e3" stroke-width="3" stroke-linecap="round"/>
+</svg>

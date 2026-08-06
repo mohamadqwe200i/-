@@ -1,0 +1,40 @@
+<svg viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="رسم تجريدي يمثل البرمجة والأكواد">
+  <defs>
+    <linearGradient id="codeBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2d3436"/>
+      <stop offset="1" stop-color="#0984e3"/>
+    </linearGradient>
+    <radialGradient id="codeGlow" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0" stop-color="#00b894" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#00b894" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="codeShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#2d3436" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect width="640" height="280" rx="24" fill="url(#codeBg)" opacity="0.06"/>
+  <circle cx="320" cy="140" r="130" fill="url(#codeGlow)"/>
+
+  <!-- زخارف عائمة -->
+  <circle cx="120" cy="70" r="5" fill="#fdcb6e" opacity="0.8"/>
+  <circle cx="540" cy="215" r="6" fill="#e17055" opacity="0.7"/>
+  <circle cx="90" cy="210" r="4" fill="#00b894" opacity="0.7"/>
+
+  <g filter="url(#codeShadow)">
+    <rect x="150" y="55" width="340" height="170" rx="16" fill="#22282b"/>
+  </g>
+  <rect x="150" y="55" width="340" height="34" rx="16" fill="#2d3436"/>
+  <rect x="150" y="72" width="340" height="17" fill="#2d3436"/>
+  <circle cx="178" cy="72" r="5" fill="#e17055"/>
+  <circle cx="196" cy="72" r="5" fill="#fdcb6e"/>
+  <circle cx="214" cy="72" r="5" fill="#00b894"/>
+
+  <text x="175" y="120" font-family="Consolas, monospace" font-size="14" fill="#74b9ff">function</text>
+  <text x="270" y="120" font-family="Consolas, monospace" font-size="14" fill="#ffeaa7">build</text>
+  <text x="175" y="145" font-family="Consolas, monospace" font-size="14" fill="#dfe6e9">  return</text>
+  <text x="270" y="145" font-family="Consolas, monospace" font-size="14" fill="#55efc4">"live site"</text>
+  <text x="175" y="170" font-family="Consolas, monospace" font-size="14" fill="#dfe6e9">}</text>
+
+  <path d="M175 195 L200 208 L175 221" stroke="#00b894" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="210" y1="221" x2="260" y2="221" stroke="#00b894" stroke-width="4" stroke-linecap="round"/>
+</svg>
