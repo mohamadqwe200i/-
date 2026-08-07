@@ -28,6 +28,7 @@
             <a href="{{ '/' | relative_url }}" class="logo">عالم <span>التقنية</span></a>
             <nav class="nav-links">
                 <a href="{{ '/' | relative_url }}">الرئيسية</a>
+                <a href="{{ '/about.html' | relative_url }}">من نحن</a>
                 <button id="theme-toggle" aria-label="تبديل الوضع الليلي/النهاري">🌙</button>
             </nav>
         </div>
@@ -35,6 +36,18 @@
 
     <!-- محتوى الصفحة أو المقال سيتم عرضه هنا تلقائياً -->
     <main class="container">
+        {% if page.date %}
+        {% assign word_count = content | strip_html | number_of_words %}
+        {% assign read_minutes = word_count | divided_by: 200 %}
+        {% if read_minutes == 0 %}{% assign read_minutes = 1 %}{% endif %}
+        <div class="post-byline">
+            <div class="byline-avatar">{{ page.author | default: site.author | slice: 0 }}</div>
+            <div class="byline-info">
+                <span class="byline-name">{{ page.author | default: site.author }}</span>
+                <span class="byline-meta">{{ page.date | date: "%d %B %Y" }} · {{ read_minutes }} دقيقة قراءة</span>
+            </div>
+        </div>
+        {% endif %}
         {{ content }}
 
         {% if page.date %}
@@ -100,7 +113,12 @@
 
     <footer class="site-footer">
         <div class="container">
-            <p>© {{ 'now' | date: "%Y" }} عالم التقنية. جميع الحقوق محفوظة.</p>
+            <div class="footer-links">
+                <a href="{{ '/' | relative_url }}">الرئيسية</a>
+                <a href="{{ '/about.html' | relative_url }}">من نحن</a>
+                <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+            </div>
+            <p>© {{ 'now' | date: "%Y" }} عالم التقنية. كل المقالات مكتوبة بواسطة {{ site.author }}.</p>
         </div>
     </footer>
 
